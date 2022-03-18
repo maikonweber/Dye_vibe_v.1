@@ -1,0 +1,30 @@
+
+#items-wrapper {
+    
+}
+
+#items{
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 425px;
+    scroll-snap-type: x mandatory;
+    --webkit-overflow-scrolling: touch;
+}
+
+.item {
+    flex: none;
+    width: 100%;
+    height: 420px;
+    scroll-snap-align: start;
+    pointer-events: none;
+}
+
+
+.item img {
+    width: 100%;
+    height: 475px;
+    object-position: 50% 90%;
+    object-fit: cover;
+    border-radius: 10%
+}
