@@ -1,6 +1,6 @@
 // import React from 'react';
 import Styles from './modal.module.css'
-// import { toast, useToast } from '@chakra-ui/react'
+import { toast, useToast } from '@chakra-ui/react'
 
 
 const ProductModal = ({Open ,setModal, product, description, img, quantidade, valor}) => {
@@ -57,7 +57,7 @@ const ProductModal = ({Open ,setModal, product, description, img, quantidade, va
 
     return (
       <>
-        {/* <div className={Styles.modal}>
+        <div className={Styles.modal}>
             <div className={Styles.modal_content}>
 
             
@@ -83,7 +83,7 @@ const ProductModal = ({Open ,setModal, product, description, img, quantidade, va
                          <button className={Styles.btn} onClick={clooseModel}> Cancelar </button>
                       </div>
                       </div>
-                      </div> */}
+                      </div>
                     
     </>
     )   

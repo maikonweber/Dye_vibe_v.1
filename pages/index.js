@@ -1,10 +1,13 @@
-// import react, { useContext , useEffect, useState } from 'react'
-// import { Flex, SimpleGrid, Box, Text } from '@chakra-ui/react'
-// import { Card } from "../src/components/card";
-// import Slider from '../src/components/slider';
-// import ProductModal  from '../src/components/modal/modal';
-// import{ sliderItems } from '../src/data';
-// import data from '../src/datax';
+import react, { useContext , useEffect, useState } from 'react'
+import { Flex, SimpleGrid, Box, Text } from '@chakra-ui/react'
+import { Card } from "../src/components/card";
+import { Slider } from '../src/components/slider';
+
+import ProductModal  from '../src/components/modal/modal';
+import{ sliderItems } from '../src/data';
+import sliderCard from '../src/datax';
+const datas = sliderCard;
+
 
 
 export const Home = () => {
@@ -23,7 +26,7 @@ export const Home = () => {
     return (
         <>  
        
-        {/* <Flex direction='column' h='100vh' >
+        <Flex direction='column' h='100vh' >
             <Flex  w='100%' my='6' h='50vh' maxWidth={1480} mx='auto' px='6' >
                 <Slider sliderItems={sliderItems} />
                 </Flex>
@@ -43,9 +46,10 @@ export const Home = () => {
                     ))}
                 </SimpleGrid>
                 </Flex>
-            </Flex> */}
+            </Flex>
             
         
             </>
             )
 }
+export default Home
