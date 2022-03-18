@@ -1,6 +1,6 @@
 
 import styled from 'styled-components'
-import React, { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 const Container = styled.div`
@@ -67,12 +67,17 @@ const ImageContainer = styled.div`
     `
 
 const Image = styled.img `
-    width: 1250px;
-    height: auto;    
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     border-radius: 15px;
-    object-fit: cover;  
-    object-position: 50% 60%;
     `
+
+
+function randomNumberLegth(length) {
+    return Math.floor(Math.random() * length)
+}
+
 export function  Slider({sliderItems}) {
     const [current, setCurrent] = useState(0);
 
@@ -81,6 +86,14 @@ export function  Slider({sliderItems}) {
     if (!Array.isArray(sliderItems) || sliderItems.length === 0) {
         return null;
     }
+    
+useEffect(() => {
+  setInterval(() => {
+    setCurrent(randomNumberLegth(length))
+
+  }, 15000);
+
+}, []);
 
     const nextSlide = () => {
         setCurrent(current === length -1 ? 0 : current + 1);
@@ -100,7 +113,6 @@ export function  Slider({sliderItems}) {
             {sliderItems.map((item, index) => {
                     return (
             <Slide>
-            
             <ImageContainer key={index}>
                 {index === current && (
                 <Image src={item.img} ></Image>

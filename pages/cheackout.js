@@ -50,10 +50,6 @@ console.log(cart)
     <Button onClick={clearCart} marginLeft={'45%'}> Finalizar </Button>
     
     </Box>
-      <Box p={2}>
-          <Input placeholder='Consultar Cep' />
-          <Button> Buscar </Button>
-      </Box>
     </Box>     
 
 </Box>
