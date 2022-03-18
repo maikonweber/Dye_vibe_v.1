@@ -45,3 +45,20 @@ export async function paymentCheckout(username, lastname, cpf, phone, email) {
     return await response.json();
     
   }
+
+  export async function getMainPage(filter, orderB, orderA, page) {
+
+    var url = '/dye/api/productsPut?filter=' + filter + '&orderBy=' + orderB + '&page=' + page + '&order' + order
+    
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+
+    }
+
+    )
+    return await response.json();
+    }
+
+
+
