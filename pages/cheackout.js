@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { Flex, Input, Button, Stack, FormLabel, FormControl, Divider ,Box , Grid, Image, Td, Thead, Tbody, Tr, Tfoot, Th , Table, GridItem} from '@chakra-ui/react'
 import { AuthContext } from '../src/context/AuthContext';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Select } from '@chakra-ui/react'
 import { useMercadopago } from 'react-sdk-mercadopago/lib';
 
 
@@ -151,7 +151,10 @@ const mercadopago =  useMercadopago.v1('');
     <Box p={5}>
     <FormControl>
     <FormLabel  htmlFor="name">Forma de Pagamento</FormLabel>
-    <Input marginBottom={3}   id="pagamento" placeholder="Forma de Pagamento" />
+    <Select id='country' placeholder='Select country'>
+    <option> Pix </option>
+    <option> Cartão de Credito </option>
+    </Select>
     </FormControl>
     <Button onClick={() => {
         setTabDisable3(true)

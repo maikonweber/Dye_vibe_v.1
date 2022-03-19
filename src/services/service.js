@@ -1,3 +1,5 @@
+
+
 export async function paymentCheckout(username, lastname, cpf, phone, email) {
     const response = await fetch(`/dye/v3/api/payment_checkout_user`, {
       method: 'POST',
@@ -47,18 +49,30 @@ export async function paymentCheckout(username, lastname, cpf, phone, email) {
   }
 
   export async function getMainPage(filter, orderB, orderA, page) {
-
-    var url = '/dye/api/productsPut?filter=' + filter + '&orderBy=' + orderB + '&page=' + page + '&order' + order
-    
+    console.log(filter, orderB, orderA, page)
+    const url = process.env.NEXT_PUBLIC_API_URL + `/api/productsFilter`
+    console.log(url)
     const response = await fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-
-    }
-
-    )
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' },
+                  
+        body: JSON.stringify({
+            filter,
+            orderB,
+            orderA,
+            page
+        })
+    })
     return await response.json();
     }
 
+
+module.exports = {
+    paymentCheckout,
+    paymentCheckoutAddress,
+    paymentCheckoutSaveCart,
+    getMainPage
+}
 
 

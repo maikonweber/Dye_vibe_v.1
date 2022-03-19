@@ -81,7 +81,7 @@ function randomNumberLegth(length) {
 export function  Slider({sliderItems}) {
     const [current, setCurrent] = useState(0);
 
-    const length = sliderItems.length;
+    var length = sliderItems.length;
 
     if (!Array.isArray(sliderItems) || sliderItems.length === 0) {
         return null;
