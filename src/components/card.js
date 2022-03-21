@@ -13,7 +13,6 @@ import ProductModal from './modal/modal';
 import { useState } from "react";
 
 
-
 export const Card = ({id ,url, product, description, valor, resume, quantidade}) => {
   const [modalOpen, setModalOpen] = useState(false)
   const handleModal = () => {
@@ -41,7 +40,6 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
             border="1px solid"
             borderColor="gray.200"
             margin="auto"
-        
             src={`${url}`}
             alt={`${product}`}
           />
@@ -57,7 +55,7 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
             textTransform="uppercase"
             fontSize="lg"
             letterSpacing="wide"
-            color="teal.600"
+            color="teal.700"
           >
             {`${product}`}
           </Text>
@@ -75,15 +73,17 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
             {`${valor}`}
           </Text>
           <Button w="180px" 
-          bgGradient="linear(to-r, green.400, red.200)"
-          my={80}
-          color='black.900'
+          bgGradient="linear(to-r, green.300, blue.700)"
+          my={2}
+          color='black.300'
           onClick={handleModal}>
              Visualizar
           </Button>
         </Stack>
       </Box>
-      {modalOpen ? <ProductModal Open={modalOpen} setModal={setModalOpen} img={url} product={product} valor={valor} quantidade={quantidade} description={description} /> : null}
+      {modalOpen ? 
+      <ProductModal Open={modalOpen} setModal={setModalOpen} img={url} product={product} valor={valor} quantidade={quantidade} description={description} /> : 
+      null}
       </>
     );
 }
