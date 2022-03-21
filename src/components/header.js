@@ -41,7 +41,7 @@ export const Header = () => {
 
     return (
       
-        <Flex as='header' bgGradient='linear(to-r, red.100, blue.200)' maxWith={1488} h='20' mx='auto' mt='0'px='8' align='center' w='100%'>
+        <Flex as='header' bgGradient='linear(to-r, red.100, blue.200)' h='20' mx='auto' mt='0'px='8' align='center' w='100%'>
             <Image alignSelf='center' src='Logo.png' alt="Logo" objectFit="cover"
             boxSize='70px' />
              <Spacer w='70px' />
@@ -51,7 +51,6 @@ export const Header = () => {
         py='3'
         px='6'
         nl='6'
-        maxWidth={280}
         alignSelf='Center'
         color='green.400'
         position='relative'

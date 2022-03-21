@@ -48,16 +48,16 @@ export const Home = ({product}) => {
                 <SimpleGrid w='100%' h='80vh' columns={[1, 1, 2, 3]} spacing={10} maxWidth={[300, 400, 1250, 1650]}>
                     {data.map(item => (
                         <Card
+                            
                             key={item.id}
                             url={item.url_img}
                             product={item.product_name}
                             valor={item.product_price}
                             resume={item.product_type}
                             quantidade={item.product_amout}
-                            handleModal={handleModal}
                         />
                     ))}
-                </SimpleGrid>np
+                </SimpleGrid>
                 </Flex>
             </Flex>
             
@@ -96,6 +96,7 @@ export const getStaticProps = async () => {
         props: {
             product : data
             },
+        revalidate: 50
     }
 }
 export default Home

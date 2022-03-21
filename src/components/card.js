@@ -25,7 +25,10 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
         <Box
         bgGradient="linear-gradient(to right, #FFB6C1 10%, #90EE90 100%)"
         p={2}
-        maxWidth="36rem"
+        maxH={550}
+        minH={200}
+        maxW={400}
+        minW={200}
         borderWidth={1}
         margin={0}
         rounded="lg"
@@ -34,7 +37,7 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
       >
         <AspectRatio ratio={1 / 1}>
           <Image
-            maxWidth="500px"
+            maxWidth="400px"
             rounded="lg"
             shadow="md"
             border="1px solid"
@@ -81,9 +84,6 @@ export const Card = ({id ,url, product, description, valor, resume, quantidade})
           </Button>
         </Stack>
       </Box>
-      {modalOpen ? 
-      <ProductModal Open={modalOpen} setModal={setModalOpen} img={url} product={product} valor={valor} quantidade={quantidade} description={description} /> : 
-      null}
       </>
     );
 }
