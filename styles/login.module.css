@@ -1,0 +1,102 @@
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-color);
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.formulario{
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    background-color: #FFF;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 99;
+    box-shadow: 10px 10px 10px #1BD3EB29;
+}
+
+.formulario::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: -200px;
+    bottom: -150px;
+    transform: rotate(14deg);
+    width: 500px;
+    height: 500px;
+    border-radius: 70px;
+    background: linear-gradient(121.22deg, #1BD3EB 10.66%, #1E8B99 92.42%);
+}
+
+.formulario::after{
+    content: "";
+    display: block;
+    position: absolute;
+    right: -200px;
+    top: -150px;
+    transform: rotate(14deg);
+    width: 500px;
+    height: 500px;
+    border-radius: 70px;
+    background: linear-gradient(121.22deg, #1BD3EB 10.66%, #1E8B99 92.42%);
+    z-index: 99;
+}
+
+.title{
+    font-size: 1.9rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.button {
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: var(--primary-color);
+    border-radius: 90px;
+    color: #FFF;
+ }   
+
+
+.input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+
+}
+.contEye{
+    position: absolute;
+    top:30px;
+    right: 15px;
+    cursor: pointer;
+ }   
+
+ 
+ @media (max-width:1344px){
+     .formulario{
+         padding: 30px;
+     }
+    .formulario::before{
+        display: none;
+    }
+    .formulario::after{
+         display: none;
+    }
+}
