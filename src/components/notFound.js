@@ -4,6 +4,8 @@ import {
     Flex,
 } from '@chakra-ui/core';
 
+import Link from 'next/link';
+
 export const notFound = () => {
     return (
         <Flex 

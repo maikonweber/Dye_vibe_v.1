@@ -44,4 +44,7 @@ export  function Formspage () {
         </Flex>
         </Flex>
     )
+
 }
+
+module.exports = Formspage

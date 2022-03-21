@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Flex, Image, Input, Icon, Spacer, Button, useDisclosure } from '@chakra-ui/react'
 import  {RiSearchLine} from 'react-icons/ri';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import {BsPeopleCircle} from 'react-icons/bs';
+import { BsFillChatDotsFill } from "react-icons/bs";
 import {HiOutlineShoppingCart } from 'react-icons/hi';
 import { AuthContext } from '../context/AuthContext';
 import {
@@ -39,16 +39,6 @@ export const Header = () => {
     }, [])
     
 
-
-
-
-    useEffect(() => {
-     
-
-    }, [])
-        
-      
-
     return (
       
         <Flex as='header' bgGradient='linear(to-r, red.100, blue.200)' maxWith={1488} h='20' mx='auto' mt='0'px='8' align='center' w='100%'>
@@ -78,7 +68,7 @@ export const Header = () => {
             <Icon as={RiSearchLine} fontSize='20' color='blue.900' />
             
          </Flex>
-         <Icon as={BsPeopleCircle} ml='6' fontSize='25' color='blue.900' onClick={console.log('her')} />
+         <Icon as={BsFillChatDotsFill} ml='6' fontSize='25' color='blue.900' onClick={console.log('her')} />
          <Icon as={HiOutlineShoppingCart} ml='6'fontSize='25' color='blue.900' onClick={onOpen} />
          <Icon as={GiHamburgerMenu} ml='6'
          fontSize='25' color="blue.900" onClick={console.log('aaa')}>
@@ -98,7 +88,7 @@ export const Header = () => {
           <DrawerBody>
             <Input placeholder="Procure pelo seu produto" />
             {cart.map((item, index ) => (
-              <Box mt='2' w='270px' h='130px' > 
+              <Box key={index} mt='2' w='270px' h='130px' > 
               <Image src={item.img} 
                borderRadius='full'
                boxSize='75px'>

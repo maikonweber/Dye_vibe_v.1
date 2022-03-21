@@ -31,10 +31,10 @@ const mercadopago =  useMercadopago.v1('');
 
     return (
         <>
-  <Grid  h='200px'
+  <Grid  h='100vh'
   templateRows='repeat(4, 1fr)'
   templateColumns='repeat(3, 3fr)'
-  gap={4} h='100vh'>
+  gap={4} >
   <GridItem rowSpan={3} colSpan={3} >
   <Tabs defaultIndex={0} index= {tabIndex} size='lg' align="center" variant='solid-rounded' colorScheme="facebook" isLazy margin={8} >
   <TabList>

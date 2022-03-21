@@ -87,13 +87,6 @@ export function  Slider({sliderItems}) {
         return null;
     }
     
-useEffect(() => {
-  setInterval(() => {
-    setCurrent(randomNumberLegth(length))
-
-  }, 15000);
-
-}, []);
 
     const nextSlide = () => {
         setCurrent(current === length -1 ? 0 : current + 1);
@@ -112,7 +105,7 @@ useEffect(() => {
             </Arrow>
             {sliderItems.map((item, index) => {
                     return (
-            <Slide>
+            <Slide key={index}>
             <ImageContainer key={index}>
                 {index === current && (
                 <Image src={item.img} ></Image>

@@ -10,13 +10,14 @@ import sliderCard from '../src/datax';
 
 
 
-export const Home = () => {
+export const Home = ({product}) => {
+  
 
     const [modalOpen, setModalOpen] = useState(false)
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(product);
     const [filter, setFilter] = useState({
         filter : "Camisas",
-    orderB : "Preço",
+        orderB : "Preço",
         orderA: "Ascendente",
         page : 1
     });
@@ -35,17 +36,7 @@ export const Home = () => {
         }, 15000);
     }
             
-
-    useEffect(() => {
-        intervalReload();
-
-    }, [])  
-
-    useEffect(() => {
-        console.log(data, "data")
-    }
-    , [data])
-  
+ 
     return (
         <>  
        
@@ -73,5 +64,38 @@ export const Home = () => {
         
             </>
             )
+}
+
+export const getStaticProps = async () => {
+    console.log('getStaticProps')
+    const url = process.env.NEXT_PUBLIC_API_URL + `/api/productsFilter`
+    console.log(url)
+    var fter = {
+        filter : "Camisas",
+        orderB : "Preço",
+        orderA: "Ascendente",
+        page : 1
+    }
+          
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' },
+
+          
+        body: JSON.stringify({
+            filter: fter.filter,
+            orderB: fter.orderB,
+            orderA: fter.orderA,
+            page: fter.page
+        })
+    })
+    const data = await response.json();
+    
+    return {
+        props: {
+            product : data
+            },
+    }
 }
 export default Home
