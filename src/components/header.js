@@ -40,7 +40,6 @@ export const Header = () => {
     
 
     return (
-      
         <Flex as='header' bgGradient='linear(to-r, red.100, blue.200)' h='20' mx='auto' mt='0'px='8' align='center' w='100%'>
             <Image alignSelf='center' src='Logo.png' alt="Logo" objectFit="cover"
             boxSize='70px' />
@@ -90,7 +89,8 @@ export const Header = () => {
               <Box key={index} mt='2' w='270px' h='130px' > 
               <Image src={item.img} 
                borderRadius='full'
-               boxSize='75px'>
+               boxSize='75px'
+               >
               </Image>
               <Text fontSize='20px' mt='2' >{item.name}</Text>
               <Text fontSize='xs'>{item.product}</Text>
