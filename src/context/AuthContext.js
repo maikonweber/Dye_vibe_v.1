@@ -41,6 +41,7 @@ function getCart() {
     
     useEffect(() => {
         const { 'nextauth.token': token } = parseCookies()
+        console.log(token, "token")
         getCart();
 
     }, []);
