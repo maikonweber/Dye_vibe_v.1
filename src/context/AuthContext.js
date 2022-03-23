@@ -47,6 +47,26 @@ export function AuthProvider({ children }) {
                 router.push('/dashboard');
             }
 
+            async function singAdm (data) {
+                // Check cookie if user is aceptCooki
+                const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/dye/api/loginAdm", {
+                           method: 'POST',
+                           headers: { 'Content-Type': 'application/json',
+                                       'acceptCookies' : 'true'},
+                           body: JSON.stringify({
+                               email: data.email,
+                               password: data.password,
+                           })
+                       })
+                       const resp = await response.json();
+                       console.log(resp)
+                           setCookie(null, 'x-auth-token', resp, {
+                               maxAge: 30 * 24 * 60 * 60,
+                               path: '/',
+                           });
+                           router.push('/adminPage');
+                       }       
+
 
 
 function handleAddtoCart(url, name , price) {
@@ -79,7 +99,6 @@ function getCart() {
     }
 }
 
-
     const { 'x-auth-token' : token_ } = parseCookies();
     const { 'acceptCookie' : cookies } = parseCookies();
     const { 'x-auth-adm' : adm } = parseCookies();  
@@ -96,6 +115,8 @@ function getCart() {
         }
     }, [token_, cookies, adm]);
 
+
+
     useEffect(() => {
        const { 'x-auth-token' : token_ } = parseCookies();
          if (token_) {
@@ -110,7 +131,7 @@ function getCart() {
 
 
     return (
-        <AuthContext.Provider value={{user , acceptCookie, token, cart, singIn, handleAddtoCart, handleRemoveItemFromCart, clearCart, hadlesItemCartLength, getCart}}>
+        <AuthContext.Provider value={{user , acceptCookie, token, cart, singAdm, singIn, handleAddtoCart, handleRemoveItemFromCart, clearCart, hadlesItemCartLength, getCart}}>
             {children}
         </AuthContext.Provider>
     );
