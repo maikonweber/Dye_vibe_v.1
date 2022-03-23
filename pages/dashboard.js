@@ -27,12 +27,17 @@ import {
   Td,
   TableCaption,
 } from '@chakra-ui/react'
-
-// Import bg Grandient theme js provider chakra
+import { parseCookies, setCookie} from 'nookies';
+import { AuthContext } from '../src/context/AuthContext';
+import { useRouter } from 'next/router';
 
 
 
 export const Dashboard = (props) => {
+  
+    console.log(props)
+
+const ctx = useContext(AuthContext);
 
     return (
         <>
@@ -132,15 +137,49 @@ export const Dashboard = (props) => {
     
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  const token = (ctx.req.cookies['x-auth-token'])
+  const cookies = ctx.req.cookies
+  // if token undefined redirect to login
+  if(!token){
+    ctx.res.writeHead(302, {
+      Location: '/login'
+    })
+    ctx.res.end()
+  }
+  // if token defined get user data
+  else{
+    
 
-    return {
-        props: {},
-        
-    }
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL1 + '/dye/api/v3/getAddress', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'acceptcookies': true,
+          'x-auth-token': token
+      }
+  });
+
+  const response_ = await fetch(process.env.NEXT_PUBLIC_API_URL1 + '/dye/api/v3/getRecordSale', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'acceptcookies': true,
+          'x-auth-token': token
+      }
+  });
+
+  const resp =  await response.json();
+  const resp_ =  await response_.json();
+
+  return {
+      props: {
+       address : resp,
+       sales : resp_
+      },
+  }
 }
-
-
+}
 
 
 export default Dashboard;

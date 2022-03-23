@@ -68,9 +68,9 @@
     padding: 10px;
     font-size: 1.2rem;
     font-weight: bold;
-    background: var(--primary-color);
+    background: blue;
     border-radius: 90px;
-    color: #FFF;
+    color: blue;
  }   
 
 

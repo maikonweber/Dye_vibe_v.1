@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState, useContext} from 'react';
 import { parseCookies, setCookie} from 'nookies';
 import { useRouter } from 'next/router';
+import { getDashboardUser } from '../services/service';
 
 // const Router = useRouter();
 
@@ -8,10 +9,13 @@ export const AuthContext = createContext({});
 
 
 export function AuthProvider({ children }) {
-
-
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState("");
+    const [acceptCookie, setAcceptCookie] = useState(false);
+    const [cart, setCart] = useState([]);
+    const auth = 'authetication'
+
+    const router = useRouter();
 
     const aceptCookie = async () => {
         setCookie(null, 'acceptCookie', true, {
@@ -25,34 +29,25 @@ export function AuthProvider({ children }) {
 
     async function singIn (data) {
      // Check cookie if user is aceptCooki
-       const response  = await fetch(process.env.NEXT_PUBLIC_API_URL + "/dye/api/login", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 
-                        'Access-Control-Allow-Origin': '*' ,  
-                         'aceptCookie' : 'true'}, 
-            body: JSON.stringify({
-                email:  data.email,
-                password: data.password,
-                remember: true
+     const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/dye/api/loginIn", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json',
+                            'acceptCookies' : 'true'},
+                body: JSON.stringify({
+                    email: data.email,
+                    password: data.password,
                 })
             })
-            // Create cookies with nookies
-            const cookies = parseCookies();
-            const { token } = await response.json();
-            setCookie(null, 'token', token, {
-                maxAge: 30 * 24 * 60 * 60,
-                path: '/',
-            });
-            setUser(
-                users
-            )
-            Router.push('/dashboard');
-            return token, users;
-    }
-    
+            const resp = await response.json();
+            console.log(resp)
+                setCookie(null, 'x-auth-token', resp, {
+                    maxAge: 30 * 24 * 60 * 60,
+                    path: '/',
+                });
+                router.push('/dashboard');
+            }
 
-    const [cart, setCart] = useState([]);
-    const auth = 'authetication'
+
 
 function handleAddtoCart(url, name , price) {
     const itemObject =  { url , name , price}
@@ -85,16 +80,37 @@ function getCart() {
 }
 
 
+    const { 'x-auth-token' : token_ } = parseCookies();
+    const { 'acceptCookie' : cookies } = parseCookies();
+    const { 'x-auth-adm' : adm } = parseCookies();  
     
     useEffect(() => {
-        const { 'nextauth.token': token } = parseCookies()
-        console.log(token, "token")
-        getCart();
+        if (token_) {
+            setToken(token_);
+        }
+        if (cookies) {
+            setAcceptCookie(cookies);
+        }
+        if (adm) {
+            setToken(adm);
+        }
+    }, [token_, cookies, adm]);
 
-    }, []);
+    useEffect(() => {
+       const { 'x-auth-token' : token_ } = parseCookies();
+         if (token_) {
+            getDashboardUser(token_).then(data => {
+                console.log(data)
+                setUser(data);
+            }
+        )}
+
+    }, [])
+
+
 
     return (
-        <AuthContext.Provider value={{ cart, handleAddtoCart, handleRemoveItemFromCart, clearCart, hadlesItemCartLength, getCart}}>
+        <AuthContext.Provider value={{user , acceptCookie, token, cart, singIn, handleAddtoCart, handleRemoveItemFromCart, clearCart, hadlesItemCartLength, getCart}}>
             {children}
         </AuthContext.Provider>
     );

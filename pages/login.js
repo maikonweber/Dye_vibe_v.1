@@ -1,13 +1,19 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import Style from "../styles/login.module.css";
 import {RiEyeCloseLine,RiEyeLine} from "react-icons/ri"
 // import { loginIn } from '../src/services/services';
 import {setCookie} from 'nookies';
 import { useRouter } from 'next/router'
 import Head from 'next/head';
+import { AuthContext } from '../src/context/AuthContext';
+
 // Sing in form with styled components
 
 const Login = () => {
+
+    const { singIn } = useContext(AuthContext);
+    
+
     const [password, setPassword] = useState('');
     const [show,setShow] = useState(false);
     const [email, setEmail] = useState('');    
@@ -16,26 +22,40 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (email != '' && password != '')  {
-    
-           const token = await loginIn(email,password)          
-           if (token) {
+        singIn({email, password});
+    }
+    //     const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/dye/api/loginIn", {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json',
+    //                     'acceptCookies' : 'true'},
+    //         body: JSON.stringify({
+    //             email: email,
+    //             password: password,
+    //         })
+    //     })
+    //     const resp = await response.json();
+    //     console.log(resp)
+    //         setCookie(null, 'x-auth-token', resp, {
+    //             maxAge: 30 * 24 * 60 * 60,
+    //             path: '/',
+    //         });
+    //         router.push('/dashboard');
+    // }
+
+        // Create cookies with nookies
+       
+
+        // if (email != '' && password != '')  {
+        //     console.log(email, password)
+              
+        //    if (token) {
           
-               setCookie(undefined, 'nextauth.token', token[0].token, {
-                   maxAge: 60 * 60 * 60 * 60,
-               });
+        //        setCookie(undefined, 'nextauth.token', token[0].token, {
+        //            maxAge: 60 * 60 * 60 * 60,
+        //        });
       
-               router.push('/dashboard');
-      
-            } else {
-      
-                alert('Email ou senha incorretos')
-            }
-        
-            } else {
-            alert('Email ou senha Invalidos')     
-           }  
-       }
+            //    router.push('/dashboard');
+
 
     const handleEmail = (e) => {
         setEmail(e.target.value)

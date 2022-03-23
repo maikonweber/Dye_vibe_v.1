@@ -67,12 +67,28 @@ export async function paymentCheckout(username, lastname, cpf, phone, email) {
     return await response.json();
     }
 
+  export async function getDashboardUser(id) {
+    const url = process.env.NEXT_PUBLIC_API_URL1 + `/dye/api/v3/getDashboardUser`
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'x-auth-token': id,
+        'acceptcookies': 'true'    
+    },
+    })
+    return await response.json();
+
+  }
+
+
 
 module.exports = {
     paymentCheckout,
     paymentCheckoutAddress,
     paymentCheckoutSaveCart,
-    getMainPage
+    getMainPage,
+    getDashboardUser
 }
 
 
