@@ -49,10 +49,10 @@ export function AuthProvider({ children }) {
 
             async function singAdm (data) {
                 // Check cookie if user is aceptCooki
-                const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/api/loginAdm", {
+                const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/loginAdm", {
                            method: 'POST',
                            headers: { 'Content-Type': 'application/json',
-                                       'acceptCookies' : 'true'},
+                                       'acceptcookies' : 'true'},
                            body: JSON.stringify({
                                email: data.email,
                                password: data.password,
