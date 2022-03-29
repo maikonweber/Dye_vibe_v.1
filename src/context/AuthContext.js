@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
 
     async function singIn (data) {
      // Check cookie if user is aceptCooki
-     const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/dye/api/loginIn", {
+     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/loginIn", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json',
                             'acceptCookies' : 'true'},
@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
 
             async function singAdm (data) {
                 // Check cookie if user is aceptCooki
-                const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/dye/api/loginAdm", {
+                const response = await fetch(process.env.NEXT_PUBLIC_API_URL2 + "/api/loginAdm", {
                            method: 'POST',
                            headers: { 'Content-Type': 'application/json',
                                        'acceptCookies' : 'true'},

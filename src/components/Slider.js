@@ -1,124 +1,20 @@
+import { Box,
+Image } from '@chakra-ui/react';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import styled from 'styled-components'
-import React , { useState, useEffect } from 'react';
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-
-const Container = styled.div`
-    width: 100%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5px;
-    overflow: hidden;
-    postion: relative;
-    object-position: center;
-    border-radius: 20px;
-`
-
-const Arrow = styled.div`
-    width:  50px;
-    height: 50px;
-    font-size: 70px;
-    backgroud-color: #fff7f7;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 240px;
-    bottom: 650px;
-    left: ${props => props.direction === 'left' && '10px'};
-    right: ${props => props.direction ==='right' && '10px'};
-    margin: auto;
-    cursor: pointer;
-    color: #fff;
-
-    @media screen and (max-width: 768px) {
-        top: 120px;
-    }
-
-    @media screen and (max-width: 1080px) {
-        top: 232px;
-
-
-    @media screen and (max-width: 485px) {
-        top: 120px;
-    }
-
-    @media screen and (max-width: 685px) {
-        top: 160px;
-    }
-    
-    
-    `
-
-
-const Slide = styled.div`
-   height: 700px;
-   border-radius: 15px;
-  
-`
-const ImageContainer = styled.div`
-    width: 100%;
-    height: 100%;    
-    border-radius: 15px;
-
-    `
-
-const Image = styled.img `
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    border-radius: 15px;
-    `
-
-
-function randomNumberLegth(length) {
-    return Math.floor(Math.random() * length)
-}
-
-export function  Slider({sliderItems}) {
-    const [current, setCurrent] = useState(0);
-
-    var length = sliderItems.length;
-
-    if (!Array.isArray(sliderItems) || sliderItems.length === 0) {
-        return null;
-    }
-    
-
-    const nextSlide = () => {
-        setCurrent(current === length -1 ? 0 : current + 1);
-
-    }
-
-    const prevSlide = () => {
-        setCurrent(current === 0 ? length -1 : current - 1);
-    }
-    
-
+export default function Slider({ sliderItems }) {
+    console.log(sliderItems, "sliderItems")
     return (
-        <Container>
-            <Arrow direction='right' onClick={() => nextSlide()}>
-            <AiOutlineRight />
-            </Arrow>
-            {sliderItems.map((item, index) => {
-                    return (
-            <Slide key={index}>
-            <ImageContainer key={index}>
-                {index === current && (
-                <Image src={item.img} ></Image>
-                )}
-                </ImageContainer>
-                   
-            </Slide>  
-             )})} 
-            <Arrow direction='left' onClick={() => prevSlide()} >
-            <AiOutlineLeft />
-            </Arrow>
-        </Container>
+        <Box w='100%' borderRadius={50} h='50vh' p={4} color='white.200' margin={1}
+        marginLeft={5} >
+            <Carousel autoPlay={true} infiniteLoop={true} number={250} >
+                {sliderItems.map((item) => {
+                   return  <Image borderRadius={20} boxShadow="inner" rounded={'md'} bg='white'  w='800px' h='50vh' src={item.url_img} alt={item.product_name} />;
+                })}
+            </Carousel>
+        </Box>
     )
-}
+}   
 
-export default Slider;
+

@@ -142,16 +142,17 @@ export const getServerSideProps = async (ctx) => {
   const cookies = ctx.req.cookies
   // if token undefined redirect to login
   if(!token){
-    ctx.res.writeHead(302, {
+    return ctx.res.writeHead(301, {
       Location: '/login'
     })
     ctx.res.end()
+    
   }
   // if token defined get user data
   else{
     
 
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL1 + '/dye/api/v3/getAddress', {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v3/getAddress', {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
@@ -160,7 +161,7 @@ export const getServerSideProps = async (ctx) => {
       }
   });
 
-  const response_ = await fetch(process.env.NEXT_PUBLIC_API_URL1 + '/dye/api/v3/getRecordSale', {
+  const response_ = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v3/getRecordSale', {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
