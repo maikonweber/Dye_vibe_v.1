@@ -34,7 +34,7 @@ import { useRouter } from 'next/router';
 
 
 export const adminPage = (props) => {
-
+  console.log(props)
 
     return (
         <>

@@ -118,13 +118,7 @@ function getCart() {
 
 
     useEffect(() => {
-       const { 'x-auth-token' : token_ } = parseCookies();
-         if (token_) {
-            getDashboardUser(token_).then(data => {
-                console.log(data)
-                setUser(data);
-            }
-        )}
+    
 
     }, [])
 
