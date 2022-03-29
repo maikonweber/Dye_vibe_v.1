@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
 
             async function singAdm (data) {
                 // Check cookie if user is aceptCooki
-                const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/loginAdm", {
+                const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/loginInAdm", {
                            method: 'POST',
                            headers: { 'Content-Type': 'application/json',
                                        'acceptcookies' : 'true'},
@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
                        })
                        const resp = await response.json();
                        console.log(resp)
-                           setCookie(null, 'x-auth-token', resp, {
+                           setCookie(null, 'x-auth-adm', resp, {
                                maxAge: 30 * 24 * 60 * 60,
                                path: '/',
                            });

@@ -68,7 +68,7 @@ export async function paymentCheckout(username, lastname, cpf, phone, email) {
     }
 
   export async function getDashboardUser(id) {
-    const url = process.env.NEXT_PUBLIC_API_URL1 + `/dye/api/v3/getDashboardUser`
+    const url = process.env.NEXT_PUBLIC_API_URL + `/dye/api/v3/getDashboardUser`
     const response = await fetch(url, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json',

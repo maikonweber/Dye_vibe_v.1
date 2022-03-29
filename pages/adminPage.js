@@ -135,21 +135,19 @@ export const adminPage = (props) => {
 }
 
 export const getServerSideProps = async (ctx) => {
-  const token = (ctx.req.cookies['x-auth-token'])
+  const token = (ctx.req.cookies['x-auth-adm'])
   const cookies = ctx.req.cookies
   // if token undefined redirect to login
   if(!token){
     return ctx.res.writeHead(301, {
       Location: '/login'
     })
-    ctx.res.end()
-    
   }
   // if token defined get user data
   else{
     
 
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v3/getAddress', {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v2/listSales', {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
@@ -158,22 +156,21 @@ export const getServerSideProps = async (ctx) => {
       }
   });
 
-  const response_ = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v3/getRecordSale', {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'acceptcookies': true,
-          'x-auth-token': token
-      }
-  });
+  // const response_ = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/v2/getRecordSale', {
+  //     method: 'GET',
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //         'acceptcookies': true,
+  //         'x-auth-token': token
+  //     }
+  // // });
 
   const resp =  await response.json();
-  const resp_ =  await response_.json();
+  // const resp_ =  await response_.json();
 
   return {
       props: {
-       address : resp,
-       sales : resp_
+       sales : resp
       },
   }
 }
